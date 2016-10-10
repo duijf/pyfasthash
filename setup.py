@@ -62,13 +62,6 @@ elif os.name == "posix":
     libraries += ["boost_python", "rt"]
     extra_compile_args += ["-msse4.2"]
 
-if os.getenv('TRAVIS') == 'true':
-    print "force to link boost::python base on Python version v%d.%d" % (sys.version_info.major, sys.version_info.minor)
-
-    os.remove('/usr/lib/libboost_python.so')
-    os.symlink('/usr/lib/libboost_python-py%d%d.so' % (sys.version_info.major, sys.version_info.minor),
-               '/usr/lib/libboost_python.so')
-
 pyhash = Extension(name="_pyhash",
                    sources=source_files,
                    define_macros=macros,
